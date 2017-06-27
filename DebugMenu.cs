@@ -82,7 +82,7 @@ namespace DTDebugMenu {
 
 				#if IN_CONTROL
 				foreach (InputDevice device in InputManager.Devices) {
-					if (device.GetControl(toggleControl_).IsPressed) {
+					if (device.GetControl(toggleControl_).WasPressed) {
 						view_.ToggleActive();
 					}
 				}

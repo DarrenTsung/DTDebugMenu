@@ -8,7 +8,9 @@ namespace DTDebugMenu.Internal {
 	public abstract class FieldInspector : MonoBehaviour, IInspectorFieldView {
 		// PRAGMA MARK - IInspectorFieldView Implementation
 		void IInspectorFieldView.Init(IGenericInspectorField field) {
-			displayNameText_.text = field.DisplayName;
+			Field_ = field;
+
+			displayNameText_.text = Field_.DisplayName;
 
 			InternalInit();
 		}
@@ -18,6 +20,10 @@ namespace DTDebugMenu.Internal {
 		[Header("Field Inspector Outlets")]
 		[SerializeField]
 		private Text displayNameText_;
+
+		protected IGenericInspectorField Field_ {
+			get; private set;
+		}
 
 		protected abstract void InternalInit();
 	}

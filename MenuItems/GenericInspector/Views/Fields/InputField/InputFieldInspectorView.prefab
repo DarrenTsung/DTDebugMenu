@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224860993837367914}
   m_Layer: 0
-  m_Name: ColorPickerContainer
+  m_Name: Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Background Color:'
+  m_Text: 'Example InputField:'
 --- !u!114 &114262269662484112
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -13,6 +13,10 @@ namespace DTDebugMenu {
 			get { return fields_; }
 		}
 
+		public int Priority {
+			get; set;
+		}
+
 		public void RegisterField<T>(string displayName, Action<T> setter, Func<T> getter) {
 			fields_.Add(new GenericInspectorField<T>(displayName, setter, getter));
 		}

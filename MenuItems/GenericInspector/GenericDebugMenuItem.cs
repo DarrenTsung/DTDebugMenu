@@ -8,6 +8,7 @@ namespace DTDebugMenu.Internal {
 		public void Init(string inspectorName, GenericInspector inspector) {
 			displayTitle_ = inspectorName;
 			activeViewPrefab_ = Resources.Load<GameObject>("GenericInspectorViewPrefab");
+			priority_ = inspector.Priority;
 
 			inspector_ = inspector;
 		}

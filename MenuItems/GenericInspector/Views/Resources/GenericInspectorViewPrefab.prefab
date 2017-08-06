@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ed25984c5ae4d98b91acbd749eda9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorInspectorPrefab_: {fileID: 1843974141390610, guid: 4f97af9c15e7d4a669fcd8addf15dd55,
+  inputFieldInspectorPrefab_: {fileID: 1843974141390610, guid: 4f97af9c15e7d4a669fcd8addf15dd55,
     type: 2}
   container_: {fileID: 1937788576996324}
 --- !u!114 &114781513297718110

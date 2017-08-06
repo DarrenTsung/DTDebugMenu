@@ -104,9 +104,9 @@ GameObject:
   m_Component:
   - component: {fileID: 224455250725445934}
   - component: {fileID: 114262269662484112}
-  - component: {fileID: 114393958625394306}
+  - component: {fileID: 114316710437753738}
   m_Layer: 0
-  m_Name: ColorInspectorView
+  m_Name: InputFieldInspectorView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,6 +229,19 @@ MonoBehaviour:
   m_PreferredHeight: 35
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &114316710437753738
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1843974141390610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98e68fbd223a34ee48594b672b062c20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayNameText_: {fileID: 114203573533662952}
+  inputField_: {fileID: 114946618276062680}
 --- !u!114 &114380994442684416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,19 +269,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114393958625394306
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1843974141390610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38c0785d46fae449a85aa52937870723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayNameText_: {fileID: 114203573533662952}
-  inputField_: {fileID: 114946618276062680}
 --- !u!114 &114946618276062680
 MonoBehaviour:
   m_ObjectHideFlags: 1

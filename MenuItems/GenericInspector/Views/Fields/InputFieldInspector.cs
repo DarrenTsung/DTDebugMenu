@@ -5,22 +5,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace DTDebugMenu.Internal {
-	public abstract class InputFieldInspector<T> : FieldInspector<T> {
+	public class InputFieldInspector : FieldInspector {
+		public void Init(IInputFieldInspectorController controller) {
+			controller_ = controller;
+		}
+
+
 		// PRAGMA MARK - Internal
 		[Header("InputFieldInspector Outlets")]
 		[SerializeField]
 		private InputField inputField_;
 
+		private IInputFieldInspectorController controller_;
+
 		protected override void InternalInit() {
 			inputField_.onValueChanged.AddListener(HandleValueChanged);
-			inputField_.text = GetCurrentValue();
+			inputField_.text = controller_.GetCurrentValue();
 		}
 
 		private void HandleValueChanged(string inputValue) {
-			HandleInputChanged(inputValue);
+			controller_.HandleInputChanged(inputValue);
 		}
-
-		protected abstract void HandleInputChanged(string input);
-		protected abstract string GetCurrentValue();
 	}
 }

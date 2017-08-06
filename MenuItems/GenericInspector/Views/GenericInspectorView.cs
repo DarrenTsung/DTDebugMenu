@@ -11,7 +11,9 @@ namespace DTDebugMenu.Internal {
 			foreach (IGenericInspectorField field in inspector.Fields) {
 				IInspectorFieldView fieldView = null;
 				if (field.Type == typeof(Color)) {
-					fieldView = GameObject.Instantiate(colorInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+					GameObject inputFieldObject = GameObject.Instantiate(inputFieldInspectorPrefab_, parent: container_.transform);
+					fieldView = inputFieldObject.GetComponent<IInspectorFieldView>();
+					inputFieldObject.GetComponent<InputFieldInspector>().Init(new ColorInputFieldInspectorController(field));
 				}
 
 				if (fieldView == null) {
@@ -27,7 +29,7 @@ namespace DTDebugMenu.Internal {
 		// PRAGMA MARK - Internal
 		[Header("Prefabs")]
 		[SerializeField]
-		private GameObject colorInspectorPrefab_;
+		private GameObject inputFieldInspectorPrefab_;
 
 
 		[Header("Outlets")]

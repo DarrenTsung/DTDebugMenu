@@ -6,7 +6,7 @@ using DTDebugMenu.Internal;
 
 namespace DTDebugMenu {
 	[CreateAssetMenu(fileName = "DebugMenuItem", menuName = "DTDebugMenu/DebugMenuItem")]
-	public sealed class DebugMenuItem : ScriptableObject {
+	public class DebugMenuItem : ScriptableObject {
 		// PRAGMA MARK - Public Interface
 		public string DisplayTitle {
 			get { return displayTitle_; }
@@ -20,16 +20,20 @@ namespace DTDebugMenu {
 			get { return priority_; }
 		}
 
+		public virtual void HandleViewCreated(GameObject createdView) {
+			// stub
+		}
+
 
 		// PRAGMA MARK - Internal
 		[Header("Required Properties")]
 		[SerializeField]
-		private string displayTitle_;
+		protected string displayTitle_;
 		[SerializeField]
-		private GameObject activeViewPrefab_;
+		protected GameObject activeViewPrefab_;
 
 		[Header("Optional")]
 		[SerializeField]
-		private int priority_ = 0;
+		protected int priority_ = 0;
 	}
 }

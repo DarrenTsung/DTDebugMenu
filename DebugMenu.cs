@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -37,16 +38,27 @@ namespace DTDebugMenu {
 
 		private GameObject view_;
 
-		private void Awake() {
+		private void Start() {
 			if (!Debug.isDebugBuild) {
 				this.enabled = false;
 				return;
 			}
 
+			var menuItems = new List<DebugMenuItem>(menuItems_);
+			foreach (var kvp in GenericInspectorRegistry.RegisteredInspectors) {
+				string inspectorName = kvp.Key;
+				GenericInspector inspector = kvp.Value;
+
+				var genericMenuItem = ScriptableObject.CreateInstance<GenericDebugMenuItem>();
+				genericMenuItem.Init(inspectorName, inspector);
+
+				menuItems.Add(genericMenuItem);
+			}
+
 			GameObject.DontDestroyOnLoad(this.gameObject);
 
 			view_ = GameObject.Instantiate(viewPrefab_, this.transform);
-			view_.GetComponent<DebugMenuView>().Init(menuItems_);
+			view_.GetComponent<DebugMenuView>().Init(menuItems.ToArray());
 			view_.gameObject.SetActive(false);
 
 			StartCoroutine(UpdateToggleView());

@@ -59,7 +59,8 @@ namespace DTDebugMenu.Internal {
 		private void HandleItemSelected(DebugMenuItem item) {
 			activeItemContainer_.DestroyAllChildren();
 
-			GameObject.Instantiate(item.ActiveViewPrefab, activeItemContainer_);
+			GameObject createdView = GameObject.Instantiate(item.ActiveViewPrefab, activeItemContainer_);
+			item.HandleViewCreated(createdView);
 			foreach (var tab in tabs_) {
 				tab.HandleNewActiveItem(item);
 			}

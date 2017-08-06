@@ -45,13 +45,15 @@ namespace DTDebugMenu.Internal {
 		private GameObject menuTabPrefab_;
 
 		private DebugMenuViewTab[] tabs_;
+		private bool oldCursorVisible_;
 
 		private void OnEnable() {
-
+			oldCursorVisible_ = Cursor.visible;
+			Cursor.visible = true;
 		}
 
 		private void OnDisable() {
-
+			Cursor.visible = oldCursorVisible_;
 		}
 
 		private void HandleItemSelected(DebugMenuItem item) {

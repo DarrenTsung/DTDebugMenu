@@ -60,6 +60,8 @@ MonoBehaviour:
     type: 2}
   buttonInspectorPrefab_: {fileID: 1744308188269936, guid: a2eda0a18880844b58d133022284fb31,
     type: 2}
+  headerInspectorPrefab_: {fileID: 1384220691505770, guid: b0968bf21939e4031ab552621b04e8d7,
+    type: 2}
   container_: {fileID: 1937788576996324}
 --- !u!114 &114781513297718110
 MonoBehaviour:
@@ -78,7 +80,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 10
+  m_Spacing: 5
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1

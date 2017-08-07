@@ -18,6 +18,8 @@ namespace DTDebugMenu.Internal {
 					fieldView = GameObject.Instantiate(toggleInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 				} else if (field.Type == typeof(ButtonInspectorField)) {
 					fieldView = GameObject.Instantiate(buttonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+				} else if (field.Type == typeof(HeaderInspectorField)) {
+					fieldView = GameObject.Instantiate(headerInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 				}
 
 				if (fieldView == null) {
@@ -38,6 +40,8 @@ namespace DTDebugMenu.Internal {
 		private GameObject toggleInspectorPrefab_;
 		[SerializeField]
 		private GameObject buttonInspectorPrefab_;
+		[SerializeField]
+		private GameObject headerInspectorPrefab_;
 
 
 		[Header("Outlets")]

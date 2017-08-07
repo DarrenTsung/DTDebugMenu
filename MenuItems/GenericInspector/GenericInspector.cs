@@ -21,6 +21,10 @@ namespace DTDebugMenu {
 			fields_.Add(new GenericInspectorField<T>(displayName, setter, getter));
 		}
 
+		public void RegisterButton(string displayName, Action buttonCallback) {
+			fields_.Add(new ButtonInspectorField(displayName, buttonCallback));
+		}
+
 
 
 		// PRAGMA MARK - Internal

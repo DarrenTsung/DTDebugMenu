@@ -16,7 +16,7 @@ namespace DTDebugMenu.Internal {
 		protected override void InternalInit() {
 			boolField_ = Field_ as IGenericInspectorField<bool>;
 			if (boolField_ == null) {
-				Debug.LogWarning("ToggleFieldInspector - failed to cast to IGenericInspectorField<bool>!");
+				Debug.LogWarning("ToggleFieldInspector - failed to cast to IGenericInspectorField<bool>! Field_: " + Field_);
 				return;
 			}
 

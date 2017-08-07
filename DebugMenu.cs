@@ -67,6 +67,9 @@ namespace DTDebugMenu {
 		#if UNITY_EDITOR
 		private void Reset() {
 			viewPrefab_ = AssetDatabaseUtil.LoadSpecificAssetNamed<GameObject>("DebugMenuView");
+			menuItems_ = new DebugMenuItem[] {
+				AssetDatabaseUtil.LoadSpecificAssetNamed<DebugMenuItem>("ConsoleLogDebugMenuItem"),
+			};
 		}
 		#endif
 

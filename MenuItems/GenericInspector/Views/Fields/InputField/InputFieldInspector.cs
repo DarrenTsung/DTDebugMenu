@@ -19,8 +19,8 @@ namespace DTDebugMenu.Internal {
 		private IInputFieldInspectorController controller_;
 
 		protected override void InternalInit() {
-			inputField_.onValueChanged.AddListener(HandleValueChanged);
 			inputField_.text = controller_.GetCurrentValue();
+			inputField_.onValueChanged.AddListener(HandleValueChanged);
 		}
 
 		private void HandleValueChanged(string inputValue) {

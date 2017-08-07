@@ -14,4 +14,4 @@ MonoBehaviour:
   displayTitle_: Console Log
   activeViewPrefab_: {fileID: 1000011282429100, guid: 73929b25aaaf5497384cfeee878efd15,
     type: 2}
-  priority_: 999
+  priority_: 10

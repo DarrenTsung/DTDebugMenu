@@ -8,7 +8,13 @@ namespace DTDebugMenu.Internal {
 	public class GenericInspectorView : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void Init(GenericInspector inspector) {
+			if (inspector_ != null) {
+				inspector_.OnInspectorDirty -= RefreshInspectorFields;
+				inspector_ = null;
+			}
+
 			inspector_ = inspector;
+			inspector_.OnInspectorDirty += RefreshInspectorFields;
 			RefreshInspectorFields();
 		}
 
@@ -31,32 +37,48 @@ namespace DTDebugMenu.Internal {
 		private GenericInspector inspector_;
 
 		private void OnEnable() {
-			RefreshInspectorFields();
+			if (inspector_ != null) {
+				RefreshInspectorFields();
+			}
 		}
 
 		private void RefreshInspectorFields() {
 			container_.transform.DestroyAllChildren();
 
-			foreach (IGenericInspectorField field in inspector.Fields) {
-				IInspectorFieldView fieldView = null;
-				if (field.Type == typeof(Color)) {
-					GameObject inputFieldObject = GameObject.Instantiate(inputFieldInspectorPrefab_, parent: container_.transform);
-					fieldView = inputFieldObject.GetComponent<IInspectorFieldView>();
-					inputFieldObject.GetComponent<InputFieldInspector>().Init(new ColorInputFieldInspectorController(field));
-				} else if (field.Type == typeof(bool)) {
-					fieldView = GameObject.Instantiate(toggleInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
-				} else if (field.Type == typeof(ButtonInspectorField)) {
-					fieldView = GameObject.Instantiate(buttonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
-				} else if (field.Type == typeof(HeaderInspectorField)) {
-					fieldView = GameObject.Instantiate(headerInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
-				}
+			foreach (IGenericInspectorField field in inspector_.Fields) {
+				CreateFieldFor(field);
+			}
+		}
 
-				if (fieldView == null) {
-					Debug.LogWarning("Failed to find prefab for IGenericInspectorField with type: " + field.Type);
+		private void CreateFieldFor(IGenericInspectorField field) {
+			IInspectorFieldView fieldView = null;
+			if (field.Type == typeof(Color)) {
+				GameObject inputFieldObject = GameObject.Instantiate(inputFieldInspectorPrefab_, parent: container_.transform);
+				fieldView = inputFieldObject.GetComponent<IInspectorFieldView>();
+				inputFieldObject.GetComponent<InputFieldInspector>().Init(new ColorInputFieldInspectorController(field));
+			} else if (field.Type == typeof(bool)) {
+				fieldView = GameObject.Instantiate(toggleInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+			} else if (field.Type == typeof(ButtonInspectorField)) {
+				fieldView = GameObject.Instantiate(buttonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+			} else if (field.Type == typeof(HeaderInspectorField)) {
+				fieldView = GameObject.Instantiate(headerInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+			} else if (field.Type == typeof(DynamicGroupInspectorField)) {
+				var dynamicGroup = field as DynamicGroupInspectorField;
+				if (!dynamicGroup.Enabled) {
 					return;
 				}
-				fieldView.Init(field);
+
+				foreach (var nestedField in dynamicGroup.Fields) {
+					CreateFieldFor(nestedField);
+				}
+				return;
 			}
+
+			if (fieldView == null) {
+				Debug.LogWarning("Failed to find prefab for IGenericInspectorField with type: " + field.Type);
+				return;
+			}
+			fieldView.Init(field);
 		}
 	}
 }

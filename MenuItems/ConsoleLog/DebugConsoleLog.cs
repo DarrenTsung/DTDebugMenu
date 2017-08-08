@@ -18,6 +18,7 @@ namespace DTDebugMenu.DefaultMenuItems {
 
 		// PRAGMA MARK - Static Internal
 		private const int kBufferLimit = 100;
+		private const int kCharacterLimit = 3000;
 
 		private static Queue<string> bufferedLines_ = new Queue<string>();
 
@@ -30,7 +31,7 @@ namespace DTDebugMenu.DefaultMenuItems {
 			Color logColor = ColorForLogType(type);
 			bufferedLines_.Enqueue(RichTextUtil.WrapWithColorTag(condition, logColor));
 
-			if (bufferedLines_.Count >= kBufferLimit) {
+			if (bufferedLines_.Count >= kBufferLimit || bufferedLines_.Sum(l => l.Length) >= kCharacterLimit) {
 				bufferedLines_.Dequeue();
 			}
 			OnLogUpdated.Invoke();

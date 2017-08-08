@@ -8,6 +8,35 @@ namespace DTDebugMenu.Internal {
 	public class GenericInspectorView : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void Init(GenericInspector inspector) {
+			inspector_ = inspector;
+			RefreshInspectorFields();
+		}
+
+
+		// PRAGMA MARK - Internal
+		[Header("Prefabs")]
+		[SerializeField]
+		private GameObject inputFieldInspectorPrefab_;
+		[SerializeField]
+		private GameObject toggleInspectorPrefab_;
+		[SerializeField]
+		private GameObject buttonInspectorPrefab_;
+		[SerializeField]
+		private GameObject headerInspectorPrefab_;
+
+		[Header("Outlets")]
+		[SerializeField]
+		private GameObject container_;
+
+		private GenericInspector inspector_;
+
+		private void OnEnable() {
+			RefreshInspectorFields();
+		}
+
+		private void RefreshInspectorFields() {
+			container_.transform.DestroyAllChildren();
+
 			foreach (IGenericInspectorField field in inspector.Fields) {
 				IInspectorFieldView fieldView = null;
 				if (field.Type == typeof(Color)) {
@@ -29,23 +58,5 @@ namespace DTDebugMenu.Internal {
 				fieldView.Init(field);
 			}
 		}
-
-
-
-		// PRAGMA MARK - Internal
-		[Header("Prefabs")]
-		[SerializeField]
-		private GameObject inputFieldInspectorPrefab_;
-		[SerializeField]
-		private GameObject toggleInspectorPrefab_;
-		[SerializeField]
-		private GameObject buttonInspectorPrefab_;
-		[SerializeField]
-		private GameObject headerInspectorPrefab_;
-
-
-		[Header("Outlets")]
-		[SerializeField]
-		private GameObject container_;
 	}
 }

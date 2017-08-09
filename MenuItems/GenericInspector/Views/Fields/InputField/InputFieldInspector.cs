@@ -16,10 +16,13 @@ namespace DTDebugMenu.Internal {
 		[Header("InputFieldInspector Outlets")]
 		[SerializeField]
 		private InputField inputField_;
+		[SerializeField]
+		private Text placeholderText_;
 
 		private IInputFieldInspectorController controller_;
 
 		protected override void InternalInit() {
+			placeholderText_.text = controller_.GetPlaceholderText();
 			inputField_.text = controller_.GetCurrentValue();
 			inputField_.onValueChanged.AddListener(HandleValueChanged);
 			inputField_.onValidateInput += ValidateInput;

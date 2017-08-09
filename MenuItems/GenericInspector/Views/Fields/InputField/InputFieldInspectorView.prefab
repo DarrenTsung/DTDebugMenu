@@ -242,6 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayNameText_: {fileID: 114203573533662952}
   inputField_: {fileID: 114946618276062680}
+  placeholderText_: {fileID: 114193045165066448}
 --- !u!114 &114380994442684416
 MonoBehaviour:
   m_ObjectHideFlags: 1

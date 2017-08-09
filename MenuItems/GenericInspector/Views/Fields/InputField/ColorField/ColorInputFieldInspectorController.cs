@@ -8,6 +8,10 @@ using UnityEngine.UI;
 namespace DTDebugMenu.Internal {
 	public class ColorInputFieldInspectorController : IInputFieldInspectorController {
 		// PRAGMA MARK - IInputFieldInspectorController Implementation
+		string IInputFieldInspectorController.GetPlaceholderText() {
+			return "#D8D8D8";
+		}
+
 		char IInputFieldInspectorController.ValidateInput(string input, int charIndex, char addedChar) {
 			if (!charRegex_.IsMatch(addedChar.ToString())) {
 				return '\0';

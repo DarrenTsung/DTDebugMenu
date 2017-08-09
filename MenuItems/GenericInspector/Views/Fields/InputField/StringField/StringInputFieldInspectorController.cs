@@ -8,6 +8,10 @@ using UnityEngine.UI;
 namespace DTDebugMenu.Internal {
 	public class StringInputFieldInspectorController : IInputFieldInspectorController {
 		// PRAGMA MARK - IInputFieldInspectorController Implementation
+		string IInputFieldInspectorController.GetPlaceholderText() {
+			return "";
+		}
+
 		char IInputFieldInspectorController.ValidateInput(string input, int charIndex, char addedChar) {
 			// no validation
 			return addedChar;

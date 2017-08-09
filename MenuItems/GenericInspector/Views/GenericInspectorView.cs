@@ -17,6 +17,12 @@ namespace DTDebugMenu.Internal {
 
 
 		// PRAGMA MARK - Internal
+		private static readonly Dictionary<Type, Func<IGenericInspectorField, IInputFieldInspectorController>> kInputFieldInspectorIndustry = new Dictionary<Type, Func<IGenericInspectorField, IInputFieldInspectorController>> {
+			{ typeof(Color), (field) => new ColorInputFieldInspectorController(field) },
+			{ typeof(int), (field) => new IntInputFieldInspectorController(field) },
+			{ typeof(string), (field) => new StringInputFieldInspectorController(field) },
+		};
+
 		[Header("Prefabs")]
 		[SerializeField]
 		private GameObject inputFieldInspectorPrefab_;
@@ -62,15 +68,11 @@ namespace DTDebugMenu.Internal {
 
 		private void CreateFieldFor(IGenericInspectorField field) {
 			IInspectorFieldView fieldView = null;
-			if (field.Type == typeof(Color) || field.Type == typeof(string)) {
+			if (kInputFieldInspectorIndustry.ContainsKey(field.Type)) {
 				GameObject inputFieldObject = GameObject.Instantiate(inputFieldInspectorPrefab_, parent: container_.transform);
 				fieldView = inputFieldObject.GetComponent<IInspectorFieldView>();
 				var inputFieldInspector = inputFieldObject.GetComponent<InputFieldInspector>();
-				if (field.Type == typeof(Color)) {
-					inputFieldInspector.Init(new ColorInputFieldInspectorController(field));
-				} else if (field.Type == typeof(string)) {
-					inputFieldInspector.Init(new StringInputFieldInspectorController(field));
-				}
+				inputFieldInspector.Init(kInputFieldInspectorIndustry[field.Type].Invoke(field));
 			} else if (field.Type == typeof(bool)) {
 				fieldView = GameObject.Instantiate(toggleInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(ToggleButtonInspectorField)) {

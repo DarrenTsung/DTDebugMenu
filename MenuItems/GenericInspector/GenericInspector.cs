@@ -31,6 +31,10 @@ namespace DTDebugMenu {
 			RegisterField<string>(displayName, getter, setter);
 		}
 
+		public void RegisterIntField(string displayName, Func<int> getter, Action<int> setter) {
+			RegisterField<int>(displayName, getter, setter);
+		}
+
 		public void RegisterToggle(string displayName, Func<bool> getter, Action<bool> setter) {
 			RegisterField<bool>(displayName, getter, setter);
 		}

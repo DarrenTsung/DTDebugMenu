@@ -23,12 +23,16 @@ namespace DTDebugMenu {
 			RegisterField(new HeaderInspectorField(headerName));
 		}
 
-		public void RegisterColorField(string displayName, Action<Color> setter, Func<Color> getter) {
-			RegisterField<Color>(displayName, setter, getter);
+		public void RegisterColorField(string displayName, Func<Color> getter, Action<Color> setter) {
+			RegisterField<Color>(displayName, getter, setter);
 		}
 
-		public void RegisterToggle(string displayName, Action<bool> setter, Func<bool> getter) {
-			RegisterField<bool>(displayName, setter, getter);
+		public void RegisterToggle(string displayName, Func<bool> getter, Action<bool> setter) {
+			RegisterField<bool>(displayName, getter, setter);
+		}
+
+		public void RegisterToggleButton(Func<bool, string> displayNameGetter, Func<bool> getter, Action<bool> setter) {
+			RegisterField(new ToggleButtonInspectorField(displayNameGetter, getter, setter));
 		}
 
 		public void RegisterButton(string displayName, Action buttonCallback) {
@@ -77,8 +81,8 @@ namespace DTDebugMenu {
 			OnInspectorDirty.Invoke();
 		}
 
-		private void RegisterField<T>(string displayName, Action<T> setter, Func<T> getter) {
-			RegisterField(new GenericInspectorField<T>(displayName, setter, getter));
+		private void RegisterField<T>(string displayName, Func<T> getter, Action<T> setter) {
+			RegisterField(new GenericInspectorField<T>(displayName, getter, setter));
 		}
 	}
 }

@@ -10,7 +10,9 @@ namespace DTDebugMenu.Internal {
 		void IInspectorFieldView.Init(IGenericInspectorField field) {
 			Field_ = field;
 
-			displayNameText_.text = Field_.DisplayName;
+			if (displayNameText_ != null) {
+				displayNameText_.text = Field_.DisplayName;
+			}
 
 			InternalInit();
 		}

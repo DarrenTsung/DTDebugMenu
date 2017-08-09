@@ -11,12 +11,12 @@ namespace DTDebugMenu.Internal {
 			get { return displayName_; }
 		}
 
-		Action<T> IGenericInspectorField<T>.Setter {
-			get { return setter_; }
-		}
-
 		Func<T> IGenericInspectorField<T>.Getter {
 			get { return getter_; }
+		}
+
+		Action<T> IGenericInspectorField<T>.Setter {
+			get { return setter_; }
 		}
 
 		Type IGenericInspectorField.Type {
@@ -25,10 +25,10 @@ namespace DTDebugMenu.Internal {
 
 
 		// PRAGMA MARK - Public Interface
-		public GenericInspectorField(string displayName, Action<T> setter, Func<T> getter) {
+		public GenericInspectorField(string displayName, Func<T> getter, Action<T> setter) {
 			displayName_ = displayName;
-			setter_ = setter;
 			getter_ = getter;
+			setter_ = setter;
 		}
 
 

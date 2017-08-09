@@ -62,10 +62,15 @@ namespace DTDebugMenu.Internal {
 
 		private void CreateFieldFor(IGenericInspectorField field) {
 			IInspectorFieldView fieldView = null;
-			if (field.Type == typeof(Color)) {
+			if (field.Type == typeof(Color) || field.Type == typeof(string)) {
 				GameObject inputFieldObject = GameObject.Instantiate(inputFieldInspectorPrefab_, parent: container_.transform);
 				fieldView = inputFieldObject.GetComponent<IInspectorFieldView>();
-				inputFieldObject.GetComponent<InputFieldInspector>().Init(new ColorInputFieldInspectorController(field));
+				var inputFieldInspector = inputFieldObject.GetComponent<InputFieldInspector>();
+				if (field.Type == typeof(Color)) {
+					inputFieldInspector.Init(new ColorInputFieldInspectorController(field));
+				} else if (field.Type == typeof(string)) {
+					inputFieldInspector.Init(new StringInputFieldInspectorController(field));
+				}
 			} else if (field.Type == typeof(bool)) {
 				fieldView = GameObject.Instantiate(toggleInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(ToggleButtonInspectorField)) {

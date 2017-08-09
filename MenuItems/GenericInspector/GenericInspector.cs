@@ -27,6 +27,10 @@ namespace DTDebugMenu {
 			RegisterField<Color>(displayName, getter, setter);
 		}
 
+		public void RegisterStringField(string displayName, Func<string> getter, Action<string> setter) {
+			RegisterField<string>(displayName, getter, setter);
+		}
+
 		public void RegisterToggle(string displayName, Func<bool> getter, Action<bool> setter) {
 			RegisterField<bool>(displayName, getter, setter);
 		}

@@ -39,7 +39,12 @@ namespace DTDebugMenu {
 		private GameObject view_;
 
 		private void Start() {
-			if (!Debug.isDebugBuild) {
+			bool debug = Debug.isDebugBuild;
+			#if DEBUG
+			debug = true;
+			#endif
+
+			if (!debug) {
 				this.enabled = false;
 				return;
 			}

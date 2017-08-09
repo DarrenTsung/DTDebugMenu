@@ -8,10 +8,7 @@ namespace DTDebugMenu.Internal {
 	public class GenericInspectorView : MonoBehaviour {
 		// PRAGMA MARK - Public Interface
 		public void Init(GenericInspector inspector) {
-			if (inspector_ != null) {
-				inspector_.OnInspectorDirty -= RefreshInspectorFields;
-				inspector_ = null;
-			}
+			CleanupInspector();
 
 			inspector_ = inspector;
 			inspector_.OnInspectorDirty += RefreshInspectorFields;
@@ -39,6 +36,17 @@ namespace DTDebugMenu.Internal {
 		private void OnEnable() {
 			if (inspector_ != null) {
 				RefreshInspectorFields();
+			}
+		}
+
+		private void OnDestroy() {
+			CleanupInspector();
+		}
+
+		private void CleanupInspector() {
+			if (inspector_ != null) {
+				inspector_.OnInspectorDirty -= RefreshInspectorFields;
+				inspector_ = null;
 			}
 		}
 

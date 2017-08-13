@@ -21,6 +21,9 @@ namespace DTDebugMenu.Internal {
 		// PRAGMA MARK - Internal
 		[Header("Field Inspector Outlets")]
 		[SerializeField]
+		#if DT_VALIDATOR
+		[DTValidator.Optional]
+		#endif
 		private Text displayNameText_;
 
 		protected IGenericInspectorField Field_ {

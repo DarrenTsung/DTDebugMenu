@@ -29,6 +29,10 @@ namespace DTDebugMenu {
 			RegisterField(new HeaderInspectorField(headerName));
 		}
 
+		public void RegisterLabel(string label) {
+			RegisterField(new LabelInspectorField(label));
+		}
+
 		public void RegisterColorField(string displayName, Func<Color> getter, Action<Color> setter) {
 			RegisterField<Color>(displayName, getter, setter);
 		}

@@ -62,6 +62,8 @@ MonoBehaviour:
     type: 2}
   headerInspectorPrefab_: {fileID: 1384220691505770, guid: b0968bf21939e4031ab552621b04e8d7,
     type: 2}
+  labelInspectorPrefab_: {fileID: 1384220691505770, guid: 3fbe7cf10d18644cba9b744decdb9b13,
+    type: 2}
   toggleButtonInspectorPrefab_: {fileID: 1899357468440844, guid: ea1bfad484343488c9e8e2f80f472bed,
     type: 2}
   container_: {fileID: 1937788576996324}

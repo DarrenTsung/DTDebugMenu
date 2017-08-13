@@ -33,6 +33,8 @@ namespace DTDebugMenu.Internal {
 		[SerializeField]
 		private GameObject headerInspectorPrefab_;
 		[SerializeField]
+		private GameObject labelInspectorPrefab_;
+		[SerializeField]
 		private GameObject toggleButtonInspectorPrefab_;
 
 		[Header("Outlets")]
@@ -81,6 +83,8 @@ namespace DTDebugMenu.Internal {
 				fieldView = GameObject.Instantiate(buttonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(HeaderInspectorField)) {
 				fieldView = GameObject.Instantiate(headerInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+			} else if (field.Type == typeof(LabelInspectorField)) {
+				fieldView = GameObject.Instantiate(labelInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(DynamicGroupInspectorField)) {
 				var dynamicGroup = field as DynamicGroupInspectorField;
 				if (!dynamicGroup.Enabled) {

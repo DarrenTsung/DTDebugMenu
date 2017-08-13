@@ -19,6 +19,12 @@ namespace DTDebugMenu {
 			get; set;
 		}
 
+		public void ResetFields() {
+			dynamicGroup_ = null;
+			fields_.Clear();
+			DirtySelf();
+		}
+
 		public void RegisterHeader(string headerName) {
 			RegisterField(new HeaderInspectorField(headerName));
 		}

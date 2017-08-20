@@ -93,6 +93,7 @@ namespace DTDebugMenu {
 			} else {
 				fields_.Add(field);
 			}
+			DirtySelf();
 		}
 
 		private void DirtySelf() {

@@ -29,7 +29,9 @@ namespace DTDebugMenu.DefaultMenuItems {
 
 
 		// PRAGMA MARK - Static Internal
+		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
 		private static readonly string kMacHomePath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 		private static readonly string kHomePreferencesPath = Path.Combine(kMacHomePath, "Library/Preferences");
+		#endif
 	}
 }

@@ -129,6 +129,8 @@ MonoBehaviour:
     type: 2}
   toggleButtonInspectorPrefab_: {fileID: 1899357468440844, guid: ea1bfad484343488c9e8e2f80f472bed,
     type: 2}
+  popupInspectorPrefab_: {fileID: 1945980255550558, guid: e0b14302a5af6483cb2b800a9ce9d8c5,
+    type: 2}
   container_: {fileID: 1937788576996324}
 --- !u!114 &114463528704417100
 MonoBehaviour:

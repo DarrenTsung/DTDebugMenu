@@ -53,6 +53,10 @@ namespace DTDebugMenu {
 			RegisterField(new ToggleButtonInspectorField(displayNameGetter, getter, setter));
 		}
 
+		public void RegisterPopup(string displayName, int startIndex, PopupItemConfig[] itemConfigs) {
+			RegisterField(new PopupInspectorField(displayName, startIndex, itemConfigs));
+		}
+
 		public void RegisterButton(string displayName, Action buttonCallback) {
 			RegisterField(new ButtonInspectorField(displayName, buttonCallback));
 		}

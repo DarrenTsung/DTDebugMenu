@@ -36,6 +36,8 @@ namespace DTDebugMenu.Internal {
 		private GameObject labelInspectorPrefab_;
 		[SerializeField]
 		private GameObject toggleButtonInspectorPrefab_;
+		[SerializeField]
+		private GameObject popupInspectorPrefab_;
 
 		[Header("Outlets")]
 		[SerializeField]
@@ -81,6 +83,8 @@ namespace DTDebugMenu.Internal {
 				fieldView = GameObject.Instantiate(toggleButtonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(ButtonInspectorField)) {
 				fieldView = GameObject.Instantiate(buttonInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
+			} else if (field.Type == typeof(PopupInspectorField)) {
+				fieldView = GameObject.Instantiate(popupInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(HeaderInspectorField)) {
 				fieldView = GameObject.Instantiate(headerInspectorPrefab_, parent: container_.transform).GetComponent<IInspectorFieldView>();
 			} else if (field.Type == typeof(LabelInspectorField)) {

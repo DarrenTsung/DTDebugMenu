@@ -23,7 +23,7 @@ namespace DTDebugMenu.Internal {
 
 			dropdown_.ClearOptions();
 			dropdown_.AddOptions(popupField_.PopupItemConfigs.Select(c => new Dropdown.OptionData(c.DisplayName)).ToList());
-			dropdown_.value = popupField_.StartIndex;
+			dropdown_.value = popupField_.GetStartIndex();
 			dropdown_.onValueChanged.AddListener(HandleDropdownValueChanged);
 		}
 

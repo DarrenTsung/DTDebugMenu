@@ -21,20 +21,20 @@ namespace DTDebugMenu.Internal {
 			get { return itemConfigs_; }
 		}
 
-		public int StartIndex {
-			get { return startIndex_; }
+		public int GetStartIndex() {
+			return startIndexDelegate_.Invoke();
 		}
 
-		public PopupInspectorField(string displayName, int startIndex, PopupItemConfig[] itemConfigs) {
+		public PopupInspectorField(string displayName, Func<int> startIndexDelegate, PopupItemConfig[] itemConfigs) {
 			displayName_ = displayName;
-			startIndex_ = startIndex;
+			startIndexDelegate_ = startIndexDelegate;
 			itemConfigs_ = itemConfigs;
 		}
 
 
 		// PRAGMA MARK - Internal
 		private string displayName_;
-		private int startIndex_;
+		private Func<int> startIndexDelegate_;
 		private PopupItemConfig[] itemConfigs_;
 	}
 }

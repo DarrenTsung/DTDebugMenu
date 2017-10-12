@@ -25,6 +25,10 @@ namespace DTDebugMenu {
 			DirtySelf();
 		}
 
+		public void SetDirty() {
+			DirtySelf();
+		}
+
 		public void RegisterHeader(string headerName) {
 			RegisterField(new HeaderInspectorField(headerName));
 		}

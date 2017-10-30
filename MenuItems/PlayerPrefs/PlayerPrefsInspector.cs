@@ -19,6 +19,13 @@ namespace DTDebugMenu.DefaultMenuItems {
 			var inspector = GenericInspectorRegistry.Get("Player Prefs");
 			inspector.ResetFields();
 
+			inspector.RegisterHeader("Debug");
+			inspector.RegisterButton("Clear Player Prefs", () => {
+				PlayerPrefs.DeleteAll();
+				RefreshPlayerPrefsInspector();
+			});
+
+			inspector.RegisterHeader("Player Prefs (Display)");
 			inspector.RegisterLabel("NOTE: This displays raw-text for the plist files, does not update during game.");
 			string[] plistPaths = PlayerPrefsManager.GetPlistPaths();
 			if (plistPaths == null) {
@@ -29,11 +36,6 @@ namespace DTDebugMenu.DefaultMenuItems {
 					inspector.RegisterLabel(PlayerPrefsManager.GetDataForPlistPath(plistPath));
 				}
 			}
-
-			inspector.RegisterButton("Clear Player Prefs", () => {
-				PlayerPrefs.DeleteAll();
-				RefreshPlayerPrefsInspector();
-			});
 		}
 	}
 }
